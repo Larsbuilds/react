@@ -1,5 +1,10 @@
+import { trackButtonClick } from '../src/utils/analytics';
+
 const Hero = ({ className }) => {
   const handleGetStarted = () => {
+    // Track the button click
+    trackButtonClick('Get Started', 'hero');
+    
     const servicesSection = document.getElementById('services');
     servicesSection.scrollIntoView({ behavior: 'smooth' });
     

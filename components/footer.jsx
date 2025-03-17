@@ -1,3 +1,5 @@
+import { trackSocialLink } from '../src/utils/analytics';
+
 const Footer = ({ className }) => {
   const socialLinks = [
     { name: "GitHub", icon: "🐙", url: "https://github.com/Larsbuilds/react", tooltip: "Where our code lives (most of it, anyway)" },
@@ -5,6 +7,10 @@ const Footer = ({ className }) => {
     { name: "LinkedIn", icon: "💼", url: "#", tooltip: "Our professional face (we tried)" },
     { name: "Instagram", icon: "📸", url: "#", tooltip: "Photos of our office dogs > code" }
   ];
+
+  const handleSocialClick = (platform) => {
+    trackSocialLink(platform);
+  };
 
   const randomDevQuotes = [
     "404: Sleep not found",
@@ -44,6 +50,7 @@ const Footer = ({ className }) => {
                   href={link.url} 
                   className="social-icon bounce-on-hover"
                   data-tooltip={link.tooltip}
+                  onClick={() => handleSocialClick(link.name)}
                 >
                   <span className="icon">{link.icon}</span>
                   <span className="name">{link.name}</span>
