@@ -6,14 +6,24 @@ const Header = ({ className }) => {
   };
 
   return (
-    <header className={className}>
+    <header className={className} role="banner">
       <div className="header-content">
-        <h1 
-          onClick={scrollToTop} 
-          className="logo-text"
-          title="Click me! I promise I'll take you home... eventually 🏠"
-        >
-          Your Logo
+        <h1>
+          <button 
+            onClick={scrollToTop} 
+            className="logo-text"
+            aria-label="Return to top of page"
+            title="Click me! I promise I'll take you home... eventually 🏠"
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              margin: 0,
+              cursor: 'pointer'
+            }}
+          >
+            Lars Builds React
+          </button>
         </h1>
         <Nav />
       </div>
