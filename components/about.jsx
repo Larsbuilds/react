@@ -60,16 +60,6 @@ const About = ({ className }) => {
               innovation, and an arguably concerning amount of coffee. Sometimes we write
               code so clean, it squeaks! 🧼
             </p>
-            <div className="fun-facts">
-              <h3>Fun Facts About Us:</h3>
-              <ul className="animated-list">
-                {funFacts.map((fact, index) => (
-                  <li key={index} className="bounce-on-hover">
-                    {['🎯', '💫', '🌟', '✨', '🚀', '🎨', '🎮'][index % 7]} {fact}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           <div className="about-section hover-lift">
@@ -89,6 +79,25 @@ const About = ({ className }) => {
               hey, that's what rollbacks are for! And yes, we do test in production... 
               just kidding, our moms raised us better than that! 🎮
             </p>
+          </div>
+        </div>
+
+        <div className="fun-facts-banner">
+          <div className="scroll-container">
+            <div className="scroll-text">
+              {/* First set of facts */}
+              {funFacts.map((fact, index) => (
+                <span key={`first-${index}`} className="fact-item">
+                  {['🎯', '💫', '🌟', '✨', '🚀', '🎨', '🎮'][index % 7]} {fact} &nbsp;&nbsp;&nbsp;
+                </span>
+              ))}
+              {/* Duplicate set of facts for seamless loop */}
+              {funFacts.map((fact, index) => (
+                <span key={`second-${index}`} className="fact-item">
+                  {['🎯', '💫', '🌟', '✨', '🚀', '🎨', '🎮'][index % 7]} {fact} &nbsp;&nbsp;&nbsp;
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -145,9 +154,6 @@ const About = ({ className }) => {
         }
         .team-card {
           padding: 20px;
-          border-radius: 12px;
-          background: white;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           transition: all 0.3s ease;
         }
         .team-card:hover {
@@ -156,6 +162,43 @@ const About = ({ className }) => {
         .member-image {
           font-size: 3em;
           margin-bottom: 15px;
+        }
+        .fun-facts-banner {
+          width: 100%;
+          background: linear-gradient(90deg, #f0f0f0, #ffffff);
+          padding: 20px 0;
+          margin: 40px 0;
+          overflow: hidden;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          position: relative;
+        }
+
+        .scroll-container {
+          width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        .scroll-text {
+          display: inline-block;
+          white-space: nowrap;
+          animation: scrollText 30s linear infinite;
+          padding-left: 100%;
+        }
+
+        .fact-item {
+          display: inline-block;
+          font-size: 1.1em;
+          color: #333;
+        }
+
+        @keyframes scrollText {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
         }
       `}</style>
     </section>

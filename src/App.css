@@ -265,7 +265,7 @@ main {
 }
 
 .service-card {
-  background: white;
+  background: linear-gradient(90deg, #1cafff, #e1a3f0, rgba(255, 122, 139, .9)) border-box;
   border-radius: 10px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -316,11 +316,17 @@ main {
   background: white;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, border 0.3s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 .about-section:hover {
   transform: translateY(-5px);
+  border: 2px solid transparent;
+  background-image: linear-gradient(white, white), linear-gradient(90deg, #1cafff, #e1a3f0, rgba(255, 122, 139, .9));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
 .about-section h2 {
@@ -387,16 +393,20 @@ main {
 }
 
 .team-card {
-  background: white;
+  background-image: linear-gradient(white, white), linear-gradient(90deg, #1cafff, #e1a3f0, rgba(255, 122, 139, .9));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border: 2px solid transparent;
   border-radius: 15px;
   padding: 2rem;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .team-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .member-image {
