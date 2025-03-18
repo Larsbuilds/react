@@ -1,6 +1,6 @@
 import Nav from "./nav";
-import { useTheme } from "../src/utils/ThemeContext";
-import { useLanguage } from "../src/utils/LanguageContext";
+import { useTheme } from "../utils/ThemeContext";
+import { useLanguage } from "../utils/LanguageContext";
 import { FaSun, FaMoon } from 'react-icons/fa';
 import LanguageSelector from './LanguageSelector';
 
@@ -11,6 +11,14 @@ const Header = ({ className }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const navItems = [
+    { id: 'home', label: t('header.home') },
+    { id: 'services', label: t('header.services') },
+    { id: 'about', label: t('header.about') },
+    { id: 'analytics', label: t('header.analytics') },
+    { id: 'contact', label: t('header.contact') }
+  ];
 
   return (
     <header className={className} role="banner">

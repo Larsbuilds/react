@@ -10,7 +10,8 @@ export const translations = {
       switchTheme: {
         light: 'Switch to light mode',
         dark: 'Switch to dark mode'
-      }
+      },
+      analytics: 'Analytics'
     },
     hero: {
       title: 'Welcome to Yet Another Website™',
@@ -157,6 +158,17 @@ export const translations = {
         "I don't need a time machine, Git has version control",
         "My code passed all tests... said no one ever"
       ]
+    },
+    analytics: {
+      title: 'Analytics Dashboard',
+      pageViews: 'Page Views',
+      events: 'Event Distribution',
+      engagement: 'User Engagement',
+      loading: 'Loading analytics data...',
+      error: 'Failed to load analytics data',
+      sampleDataNote: 'Note: This dashboard currently shows sample data for demonstration purposes.',
+      engagementDuration: 'Engagement Duration (min)',
+      sessionDuration: 'Session Duration (min)'
     }
   },
   de: {
@@ -170,7 +182,8 @@ export const translations = {
       switchTheme: {
         light: 'Zum hellen Modus wechseln',
         dark: 'Zum dunklen Modus wechseln'
-      }
+      },
+      analytics: 'Analytik'
     },
     hero: {
       title: 'Willkommen auf Noch Einer Website™',
@@ -317,6 +330,17 @@ export const translations = {
         "Ich brauche keine Zeitmaschine, Git hat Versionskontrolle",
         "Mein Code hat alle Tests bestanden... sagte niemand jemals"
       ]
+    },
+    analytics: {
+      title: 'Analytics-Dashboard',
+      pageViews: 'Seitenaufrufe',
+      events: 'Ereignisverteilung',
+      engagement: 'Benutzerinteraktion',
+      loading: 'Analysedaten werden geladen...',
+      error: 'Fehler beim Laden der Analysedaten',
+      sampleDataNote: 'Hinweis: Dieses Dashboard zeigt derzeit Beispieldaten zu Demonstrationszwecken.',
+      engagementDuration: 'Interaktionsdauer (min)',
+      sessionDuration: 'Sitzungsdauer (min)'
     }
   },
   uk: {
@@ -330,7 +354,8 @@ export const translations = {
       switchTheme: {
         light: 'Перейти на світлу тему',
         dark: 'Перейти на темну тему'
-      }
+      },
+      analytics: 'Аналітика'
     },
     hero: {
       title: 'Ласкаво просимо на Ще Один Веб-сайт™',
@@ -477,6 +502,14 @@ export const translations = {
         "Мені не потрібна машина часу, в Git є контроль версій",
         "Мій код пройшов усі тести... сказав ніхто й ніколи"
       ]
+    },
+    analytics: {
+      title: 'Панель аналітики',
+      pageViews: 'Перегляди сторінок',
+      events: 'Розподіл подій',
+      engagement: 'Взаємодія користувачів',
+      loading: 'Завантаження даних аналітики...',
+      error: 'Помилка завантаження даних аналітики'
     }
   }
-}; 
+};

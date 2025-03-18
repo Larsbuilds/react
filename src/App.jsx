@@ -2,14 +2,15 @@
 // Your components go here
 import { useEffect, useState } from 'react';
 import ReactGA from 'react-ga4';
-import Header from "../components/header";
-import Hero from "../components/hero";
-import Service from "../components/service";
-import About from "../components/about";
-import Footer from "../components/footer";
+import Header from "./components/header";
+import Hero from "./components/hero";
+import Service from "./components/service";
+import About from "./components/about";
+import Footer from "./components/footer";
 import { useScrollTracking } from './utils/analytics';
 import { ThemeProvider } from './utils/ThemeContext';
 import { LanguageProvider } from './utils/LanguageContext';
+import AnalyticsDashboard from "./components/AnalyticsDashboard";
 import "./App.css";
 
 const AppContent = () => {
@@ -28,6 +29,9 @@ const AppContent = () => {
         </div>
         <div id="about">
           <About className="about" />
+        </div>
+        <div id="analytics">
+          <AnalyticsDashboard />
         </div>
       </main>
       <div id="contact">

@@ -1,5 +1,5 @@
-import { trackButtonClick } from '../src/utils/analytics';
-import { useLanguage } from '../src/utils/LanguageContext';
+import { trackButtonClick } from '../utils/analytics';
+import { useLanguage } from '../utils/LanguageContext';
 
 const Hero = ({ className }) => {
   const { t } = useLanguage();

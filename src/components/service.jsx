@@ -1,4 +1,4 @@
-import { useLanguage } from '../src/utils/LanguageContext';
+import { useLanguage } from '../utils/LanguageContext';
 
 const Service = ({ className }) => {
   const { t } = useLanguage();

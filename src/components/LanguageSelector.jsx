@@ -1,4 +1,4 @@
-import { useLanguage } from '../src/utils/LanguageContext';
+import { useLanguage } from '../utils/LanguageContext';
 import { FaGlobe } from 'react-icons/fa';
 
 const LanguageSelector = () => {
