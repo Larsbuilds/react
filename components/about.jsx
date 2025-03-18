@@ -1,50 +1,41 @@
+import { useLanguage } from '../src/utils/LanguageContext';
+
 const About = ({ className }) => {
+  const { t } = useLanguage();
+
   const teamMembers = [
     {
-      name: "John Doe",
-      role: "CEO & Chief Coffee Runner",
-      image: "🦸‍♂️",
-      description: "Known for his legendary ability to turn coffee into code and meetings into memes.",
-      secretTalent: "Can debug code just by staring at it intensely"
+      id: 'alice',
+      image: "👩‍💻"
     },
     {
-      name: "Jane Smith",
-      role: "Design Wizard",
-      image: "🧙‍♀️",
-      description: "Can make UIs so beautiful, they bring tears to developers' eyes.",
-      secretTalent: "Speaks fluent CSS-ish"
+      id: 'bob',
+      image: "👨‍💻"
     },
     {
-      name: "Mike Johnson",
-      role: "Bug Whisperer",
-      image: "🐛",
-      description: "Has a PhD in turning 'it works on my machine' into 'it works everywhere'.",
-      secretTalent: "Once fixed a bug by doing a rain dance"
+      id: 'charlie',
+      image: "🧙‍♂️"
     },
     {
-      name: "Sarah Chen",
-      role: "Code Ninja",
-      image: "🥷",
-      description: "So stealthy at deploying code that the bugs don't even notice they're being fixed.",
-      secretTalent: "Types faster than her shadow"
+      id: 'john',
+      image: "🦸‍♂️"
     },
     {
-      name: "Bob Wilson",
-      role: "Chaos Engineer",
-      image: "🌪️",
-      description: "Specializes in breaking things before they break themselves.",
-      secretTalent: "Can predict system crashes by reading tea leaves"
+      id: 'jane',
+      image: "🧙‍♀️"
+    },
+    {
+      id: 'mike',
+      image: "🐛"
+    },
+    {
+      id: 'sarah',
+      image: "🥷"
+    },
+    {
+      id: 'wilson',
+      image: "🌪️"
     }
-  ];
-
-  const funFacts = [
-    "Our office plant survived 3 weeks without water (unlike our code without coffee)",
-    "We've named all our servers after pizza toppings",
-    "Our longest debugging session lasted longer than a Lord of the Rings marathon",
-    "We have a rubber duck debugging room with over 100 different ducks",
-    "Our code repository has more branches than a botanical garden",
-    "We celebrate successful deployments with a synchronized team dance",
-    "Our 404 page has a higher user satisfaction rating than most features"
   ];
 
   return (
@@ -52,33 +43,16 @@ const About = ({ className }) => {
       <div className="about-container">
         <div className="about-flex-container">
           <div className="about-section hover-lift">
-            <h2>About Us</h2>
-            <p className="about-subtitle">We're not your typical tech company</p>
-            <p className="about-description">
-              We're a bunch of passionate tech enthusiasts who believe that great software
-              should be both powerful AND fun to use. Our team runs on creativity,
-              innovation, and an arguably concerning amount of coffee. Sometimes we write
-              code so clean, it squeaks! 🧼
-            </p>
+            <h2>{t('about.title')}</h2>
+            <p className="about-subtitle">{t('about.subtitle')}</p>
+            <p className="about-description">{t('about.description')}</p>
           </div>
 
           <div className="about-section hover-lift">
-            <h2>Our Story</h2>
-            <p className="about-subtitle">From garage to slightly bigger garage</p>
-            <p className="about-description">
-              It all started in 2024 when our founders met at a hackathon and bonded over
-              their shared love of dad jokes and clean code. What began as a late-night
-              coding session fueled by energy drinks and dreams has evolved into a
-              slightly more organized late-night coding session, but now with better snacks
-              and occasionally working air conditioning! 🌡️
-            </p>
-            <p className="about-description">
-              Our mission? To create software that makes our users say "Wow!" (in a good way)
-              and our competitors say "How?!" (in a confused way). We believe in pushing
-              boundaries, breaking conventions, and occasionally breaking the build – but
-              hey, that's what rollbacks are for! And yes, we do test in production... 
-              just kidding, our moms raised us better than that! 🎮
-            </p>
+            <h2>{t('about.story.title')}</h2>
+            <p className="about-subtitle">{t('about.story.subtitle')}</p>
+            <p className="about-description">{t('about.story.part1')}</p>
+            <p className="about-description">{t('about.story.part2')}</p>
           </div>
         </div>
 
@@ -86,13 +60,13 @@ const About = ({ className }) => {
           <div className="scroll-container">
             <div className="scroll-text">
               {/* First set of facts */}
-              {funFacts.map((fact, index) => (
+              {t('about.funFacts').map((fact, index) => (
                 <span key={`first-${index}`} className="fact-item">
                   {['🎯', '💫', '🌟', '✨', '🚀', '🎨', '🎮'][index % 7]} {fact} &nbsp;&nbsp;&nbsp;
                 </span>
               ))}
               {/* Duplicate set of facts for seamless loop */}
-              {funFacts.map((fact, index) => (
+              {t('about.funFacts').map((fact, index) => (
                 <span key={`second-${index}`} className="fact-item">
                   {['🎯', '💫', '🌟', '✨', '🚀', '🎨', '🎮'][index % 7]} {fact} &nbsp;&nbsp;&nbsp;
                 </span>
@@ -102,17 +76,18 @@ const About = ({ className }) => {
         </div>
 
         <div className="team-section">
-          <h2>The Dream Team</h2>
-          <p className="about-subtitle">Meet the wizards behind the curtain</p>
+          <h2>{t('about.team.title')}</h2>
+          <p className="about-subtitle">{t('about.team.subtitle')}</p>
           <div className="team-grid">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="team-card hover-lift">
+            {teamMembers.map((member) => (
+              <div key={member.id} className="team-card hover-lift">
                 <div className="member-image spin-on-hover">{member.image}</div>
-                <h3>{member.name}</h3>
-                <p className="member-role">{member.role}</p>
-                <p className="member-description">{member.description}</p>
+                <h3>{t(`about.team.members.${member.id}.name`)}</h3>
+                <p className="member-role">{t(`about.team.members.${member.id}.role`)}</p>
+                <p className="member-description">{t(`about.team.members.${member.id}.description`)}</p>
                 <p className="secret-talent">
-                  <span className="secret-label">Secret Superpower:</span> {member.secretTalent}
+                  <span className="secret-label">{t('about.team.secretSuperpower')}</span>{' '}
+                  {t(`about.team.members.${member.id}.secretTalent`)}
                 </p>
               </div>
             ))}
@@ -143,10 +118,10 @@ const About = ({ className }) => {
           margin-top: 10px;
           font-style: italic;
           font-size: 0.9em;
-          color: #666;
+          color: var(--text-secondary);
         }
         .secret-label {
-          color: #ff6b6b;
+          color: var(--accent-color);
           font-weight: bold;
         }
         .animated-list li {
@@ -165,7 +140,7 @@ const About = ({ className }) => {
         }
         .fun-facts-banner {
           width: 100%;
-          background: linear-gradient(90deg, #f0f0f0, #ffffff);
+          background: linear-gradient(90deg, var(--bg-secondary), var(--bg-primary));
           padding: 20px 0;
           margin: 40px 0;
           overflow: hidden;
@@ -189,7 +164,7 @@ const About = ({ className }) => {
         .fact-item {
           display: inline-block;
           font-size: 1.1em;
-          color: #333;
+          color: var(--text-secondary);
         }
 
         @keyframes scrollText {

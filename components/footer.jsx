@@ -1,24 +1,32 @@
 import { trackSocialLink } from '../src/utils/analytics';
+import { useLanguage } from '../src/utils/LanguageContext';
+import { useState, useEffect } from 'react';
 
 const Footer = ({ className }) => {
+  const { t } = useLanguage();
+  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentQuoteIndex(prevIndex => {
+        const quotes = t('footer.randomQuotes');
+        return (prevIndex + 1) % quotes.length;
+      });
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [t]);
+
   const socialLinks = [
-    { name: "GitHub", icon: "🐙", url: "https://github.com/Larsbuilds/react", tooltip: "Where our code lives (most of it, anyway)" },
-    { name: "Twitter", icon: "🐦", url: "#", tooltip: "Where we tweet about fixing bugs at 3 AM" },
-    { name: "LinkedIn", icon: "💼", url: "#", tooltip: "Our professional face (we tried)" },
-    { name: "Instagram", icon: "📸", url: "#", tooltip: "Photos of our office dogs > code" }
+    { name: "GitHub", icon: "🐙", url: "https://github.com/Larsbuilds/react", tooltip: t('footer.social.github') },
+    { name: "Twitter", icon: "🐦", url: "#", tooltip: t('footer.social.twitter') },
+    { name: "LinkedIn", icon: "💼", url: "#", tooltip: t('footer.social.linkedin') },
+    { name: "Instagram", icon: "📸", url: "#", tooltip: t('footer.social.instagram') }
   ];
 
   const handleSocialClick = (platform) => {
     trackSocialLink(platform);
   };
-
-  const randomDevQuotes = [
-    "404: Sleep not found",
-    "It works on my machine ¯\\_(ツ)_/¯",
-    "To be continued... right after this debug session",
-    "Keep calm and clear the cache",
-    "May the source be with you"
-  ];
 
   return (
     <footer className={`fun-footer ${className || ''}`}>
@@ -27,22 +35,22 @@ const Footer = ({ className }) => {
         {/* Main Content Section */}
         <div className="footer-main">
           <div className="footer-message">
-            <h3 className="typing-effect">Thanks for scrolling all the way down! 🎉</h3>
+            <h3 className="typing-effect">{t('footer.thanks')}</h3>
             <p className="footer-tagline bounce-on-hover">
-              Made with <span className="emoji-stack">☕️ + 💻 + 🎵 + 🍕</span>
+              {t('footer.madeWith')} <span className="emoji-stack">☕️ + 💻 + 🎵 + 🍕</span>
               <span className="tooltip">
-                (and occasionally 🍷)
-                <span className="tooltiptext">Don't worry, not during deployments!</span>
+                ({t('footer.andOccasionally')} 🍷)
+                <span className="tooltiptext">{t('footer.madeWithTooltip')}</span>
               </span>
             </p>
-            <p className="random-quote">
-              {randomDevQuotes[Math.floor(Math.random() * randomDevQuotes.length)]}
+            <p className="random-quote fade-transition">
+              {t('footer.randomQuotes')[currentQuoteIndex]}
             </p>
           </div>
 
           {/* Social Links Section */}
           <div className="social-section">
-            <h4 className="section-title">Find us in the wild</h4>
+            <h4 className="section-title">{t('footer.findUs')}</h4>
             <div className="social-links">
               {socialLinks.map((link, index) => (
                 <a 
@@ -65,14 +73,14 @@ const Footer = ({ className }) => {
           <div className="footer-easter-egg">
             <p className="code-comment">
               {/* eslint-disable-next-line no-console */}
-              console.log("🕵️‍♂️ You found our secret footer message! Here's a cookie: 🍪");
+              {t('footer.easterEgg')}
             </p>
           </div>
 
           <div className="copyright">
-            <p>© {new Date().getFullYear()} Our Awesome Company</p>
-            <p className="small-print">No bugs were harmed in the making of this website*</p>
-            <p className="really-small-print">*Okay, maybe a few 🐛</p>
+            <p>{t('footer.copyright.company').replace('{year}', new Date().getFullYear())}</p>
+            <p className="small-print">{t('footer.copyright.bugs')}</p>
+            <p className="really-small-print">{t('footer.copyright.bugsAsterisk')}</p>
           </div>
         </div>
       </div>
@@ -137,6 +145,16 @@ const Footer = ({ className }) => {
           font-family: monospace;
           transform: rotate(-1deg);
           font-size: 1.1rem;
+          min-height: 1.5em;
+        }
+
+        .fade-transition {
+          opacity: 1;
+          transition: opacity 0.3s ease;
+        }
+
+        .fade-transition:not(:hover) {
+          opacity: 0.8;
         }
 
         .section-title {

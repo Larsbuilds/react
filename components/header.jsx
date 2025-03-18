@@ -1,6 +1,13 @@
 import Nav from "./nav";
+import { useTheme } from "../src/utils/ThemeContext";
+import { useLanguage } from "../src/utils/LanguageContext";
+import { FaSun, FaMoon } from 'react-icons/fa';
+import LanguageSelector from './LanguageSelector';
 
 const Header = ({ className }) => {
+  const { isDark, toggleTheme } = useTheme();
+  const { t } = useLanguage();
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -12,8 +19,8 @@ const Header = ({ className }) => {
           <button 
             onClick={scrollToTop} 
             className="logo-text"
-            aria-label="Return to top of page"
-            title="Click me! I promise I'll take you home... eventually 🏠"
+            aria-label={t('header.returnToTop')}
+            title={t('header.logoTitle')}
             style={{
               background: 'none',
               border: 'none',
@@ -25,7 +32,18 @@ const Header = ({ className }) => {
             Lars Builds React
           </button>
         </h1>
-        <Nav />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <LanguageSelector />
+          <button
+            onClick={toggleTheme}
+            className="theme-toggle"
+            aria-label={isDark ? t('header.switchTheme.light') : t('header.switchTheme.dark')}
+            title={isDark ? "Let there be light! ☀️" : "Embrace the darkness! 🌙"}
+          >
+            {isDark ? <FaSun /> : <FaMoon />}
+          </button>
+          <Nav />
+        </div>
       </div>
     </header>
   );

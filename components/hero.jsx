@@ -1,6 +1,9 @@
 import { trackButtonClick } from '../src/utils/analytics';
+import { useLanguage } from '../src/utils/LanguageContext';
 
 const Hero = ({ className }) => {
+  const { t } = useLanguage();
+
   const handleGetStarted = () => {
     // Track the button click
     trackButtonClick('Get Started', 'hero');
@@ -19,16 +22,16 @@ const Hero = ({ className }) => {
   return (
     <section className={className}>
       <div className="hero-content">
-        <h1>Welcome to Yet Another Website™</h1>
-        <p>Because the internet definitely needed one more of these! 🎉</p>
+        <h1>{t('hero.title')}</h1>
+        <p>{t('hero.subtitle')}</p>
         <div className="hero-subtext">
-          <p>* No developers were harmed in the making of this website</p>
-          <p>** Results may vary based on how many Stack Overflow posts we could find</p>
+          <p>{t('hero.disclaimer')}</p>
+          <p>{t('hero.disclaimer2')}</p>
         </div>
         <button className="cta-button" onClick={handleGetStarted}>
-          Click Here to Start Your Journey*
+          {t('hero.cta')}
         </button>
-        <p className="button-footnote">*Journey may include unexpected features we're calling "surprise mechanics"</p>
+        <p className="button-footnote">{t('hero.ctaFootnote')}</p>
       </div>
     </section>
   );
